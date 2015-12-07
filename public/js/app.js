@@ -16,7 +16,7 @@ $(document).ready(function(){
 	var render = function() {
 		$moviesList.empty();
 		var moviesHtml = template({ movies: allMovies });
-		$moviesList.append(moviesHtml);
+		$('#moviesList').append(moviesHtml);
 	};
 
 	$.ajax({
@@ -34,7 +34,7 @@ $(document).ready(function(){
     	var newMovie = $(this).serialize();
 
     	$.post(baseUrl, newMovie, function (data) {
-      		console.log(data);
+      	console.log(data);
     		allMovies.push(data);
     		render();
     	});

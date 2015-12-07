@@ -28,10 +28,10 @@ var movies = [
 
 var profile = [
   {name: "Alex Rao", github_link: "<a href=\"https://github.com/alexpsu\">", curent_city: "Palo Alto", family_members: [
-  {name: "Pradeep Rao", relationship: "father"},
-  {name: "Amy Rao", relationship: "mother"},
-  {name: "Ahna Rao", relationship: "sister"}
-  ]
+    {name: "Pradeep Rao", relationship: "father"},
+    {name: "Amy Rao", relationship: "mother"},
+    {name: "Ahna Rao", relationship: "sister"}
+    ]
   }
 ];
 
@@ -92,21 +92,18 @@ app.get('/api/movies/:id', function show(req, res) {
 });
 
 app.get('/api/movies/search', function search(req, res){
-  var newSearch = req.query.q.toString();
-  var filterMovie;
+  var newSearch = req.query.q;
+  var filterMovie = [];
   var found;
-  console.log(movies);
   movies.forEach(function(ele, index) {
-    console.log(ele);
     if(ele.title == newSearch) {
       filterMovie = movies.splice(index, 1);
       console.log(filterMovie);
     } else {
       console.log("dud");
-      console.log(filterMovie);
     }
   })
-  res.jston({movies});
+  res.jston({movies: filterMovie});
 });
 
 app.post('/api/movies', function create(req, res) {

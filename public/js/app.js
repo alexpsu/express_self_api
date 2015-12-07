@@ -24,7 +24,9 @@ $(document).ready(function(){
 		url: baseUrl,
 		success: function(taco) {
 			allMovies = taco.movies
-			render();
+      allMovies.forEach(function(ele){
+      $('#movies-list').append("<p>" + ele.title + " by " + ele.director + "</p>");  
+      })
 		}
 	});
 

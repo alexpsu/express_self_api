@@ -26,7 +26,6 @@ $(document).ready(function(){
     url: baseUrl,
     success: function(taco) {
       allMovies = taco.movies;
-      console.log(allMovies);
       moviesHtml = template({movies: allMovies});
       $('#movies-list').append(moviesHtml);
     }
@@ -41,10 +40,13 @@ $(document).ready(function(){
       method: 'POST',
       url: baseUrl,
       data: newMovie,
-      success: function(data) {
-        $('#movies-list').append("<p>" + data.title + " by " + data.director + "</p>");
+      success: function(taco) {
+        $moviesList.empty();
+        allMovies.push(taco);
+        moviesHtml = template({movies: allMovies});
+        $('#movies-list').append(moviesHtml);
       }
-    })
+    });
   });
 
   $moviesList

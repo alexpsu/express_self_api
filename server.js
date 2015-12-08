@@ -85,25 +85,24 @@ app.get('/api/movies/:id', function show(req, res) {
       found = movies.indexOf(ele);
       console.log(found);
     } else {
-      console.log("dud")
+      console.log("dudid")
     }
   })
   res.json(movies[found]);
 });
 
-app.get('/api/movies/search', function search(req, res){
+app.get('/api/search', function search(req, res){
   var newSearch = req.query.q;
   var filterMovie = [];
-  var found;
   movies.forEach(function(ele, index) {
     if(ele.title == newSearch) {
-      filterMovie = movies.splice(index, 1);
-      console.log(filterMovie);
+      filterMovie.push(ele);
     } else {
-      console.log("dud");
+      console.log("dudsearch");
+      console.log(ele);
     }
   })
-  res.jston({movies: filterMovie});
+  res.json({movies: filterMovie});
 });
 
 app.post('/api/movies', function create(req, res) {
